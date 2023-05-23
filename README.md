@@ -26,6 +26,13 @@ The JavaScript code for the conversion logic can be found in the `script.js` fil
 
 - Bootstrap v4.5.0 (linked from a CDN)
 
+## Deployment
+
+The project is deployed on Netlify. You can access it using the following link:
+
+[Live Demo](https://num-to-words.netlify.app)
+
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
