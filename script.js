@@ -12,9 +12,7 @@ const singleDigits = [
 
   // Function to convert a number to words
   function convertNumberToWords(number) {
-    if (number === 0) {
-      return "zero";
-    } else if (number < 0 || number > 100000000000) {
+    if (number <= 0 || number >= 100000000000) {
       return "Number out of range";
     } else {
       return convertNumber(number);
