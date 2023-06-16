@@ -1,52 +1,53 @@
 // Array for storing words for single-digit numbers
-const singleDigits = [
+const uniqueNumbers = [
     "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
     "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
     "seventeen", "eighteen", "nineteen"
   ];
 
-  // Array for storing words for tens
-  const tens = [
+  // Array for storing words for tenMultiples
+  const tenMultiples = [
     "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
   ];
 
   // Function to convert a number to words
-  function convertNumberToWords(number) {
+  function NumberValidator(number) {
     if (number <= 0 || number >= 100000000000) {
       return "Number out of range";
     } else {
-      return convertNumber(number);
+      return numberConverter(number);
     }
   }
   // Recursive function to convert a number to words
-  function convertNumber(number) {
+  function numberConverter(number) {
     if (number < 20) {
-      return singleDigits[number]; // Lookup word directly for numbers less than 20
+      return uniqueNumbers[number]; // Lookup word directly for numbers less than 20
     } else if (number < 100) {
-      return tens[Math.floor(number / 10)] + " " + convertNumber(number % 10);
+      return tenMultiples[Math.floor(number / 10)] + " " + numberConverter(number % 10);
     } else if (number < 1000) {
       return (
-        singleDigits[Math.floor(number / 100)] +
+        uniqueNumbers[Math.floor(number / 100)] +
+        //  uniqueNumbers[8] 
         " hundred " +
-        convertNumber(number % 100) // Combine words for hundreds and the remaining number
+        numberConverter(number % 100) // Combine words for hundreds and the remaining number
       );
     } else if (number < 1000000) {
       return (
-        convertNumber(Math.floor(number / 1000)) +
+        numberConverter(Math.floor(number / 1000)) +
         " thousand " +
-        convertNumber(number % 1000) // Combine words for thousands and the remaining number
+        numberConverter(number % 1000) // Combine words for thousands and the remaining number
       );
     } else if (number < 1000000000) {
       return (
-        convertNumber(Math.floor(number / 1000000)) +
+        numberConverter(Math.floor(number / 1000000)) +
         " million " +
-        convertNumber(number % 1000000) // Combine words for millions and the remaining number
+        numberConverter(number % 1000000) // Combine words for millions and the remaining number
       );
     } else {
       return (
-        convertNumber(Math.floor(number / 1000000000)) +
+        numberConverter(Math.floor(number / 1000000000)) +
         " billion " +
-        convertNumber(number % 1000000000) // Combine words for billions and the remaining number
+        numberConverter(number % 1000000000) // Combine words for billions and the remaining number
       );
     }
   }
@@ -61,22 +62,23 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
   const numberInput = document.getElementById('number');
   const number = parseInt(numberInput.value);
-  const formattedNumber = number.toLocaleString(); // Format the number with commas
-  const words = convertNumberToWords(number);
+  const words = NumberValidator(number);
   const row = document.createElement('tr');
-  const positionCell = document.createElement('td');
-  const numberCell = document.createElement('td');
-  const wordsCell = document.createElement('td');
+  const positionData = document.createElement('td');
+  const numberData = document.createElement('td');
+  const wordsData = document.createElement('td');
+  
+  const formattedNumber = number.toLocaleString(); // Format the number with commas
 
  // Set the text content of cells
-  positionCell.textContent = position;
-  numberCell.textContent = formattedNumber;
-  wordsCell.textContent = words;
+  positionData.textContent = position;
+  numberData.textContent = formattedNumber;
+  wordsData.textContent = words;
 
    // Append cells to the row
-  row.appendChild(positionCell);
-  row.appendChild(numberCell);
-  row.appendChild(wordsCell);
+  row.appendChild(positionData);
+  row.appendChild(numberData);
+  row.appendChild(wordsData);
 
   // Append the row to the table body
   tableBody.appendChild(row);
