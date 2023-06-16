@@ -11,7 +11,7 @@ const uniqueNumbers = [
   ];
 
   // Function to convert a number to words
-  function NumberValidator(number) {
+  function numberValidator(number) {
     if (number <= 0 || number >= 100000000000) {
       return "Number out of range";
     } else {
@@ -62,7 +62,7 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
   const numberInput = document.getElementById('number');
   const number = parseInt(numberInput.value);
-  const words = NumberValidator(number);
+  const words = numberValidator(number);
   const row = document.createElement('tr');
   const positionData = document.createElement('td');
   const numberData = document.createElement('td');
